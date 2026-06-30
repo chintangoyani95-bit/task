@@ -1,0 +1,88 @@
+<script>
+    // no arg , no return
+
+    function showmessage() {
+        document.write("Hello JavaScript");
+    }
+
+    showmessage();
+
+
+    function welcome() {
+        document.write("<br>Welcome Student");
+    }
+
+    welcome();
+
+
+    function addition() {
+        var a = 10;
+        var b = 20;
+
+        document.write("<br>Addition = " + (a + b));
+    }
+
+    addition();
+
+    // with arg , no return
+
+    function sub(a, b) {
+        document.write("<br><br>Sub = " + (a - b));
+    }
+
+    sub(20, 10);
+
+
+    function mul(a, b) {
+        document.write("<br>Mul = " + (a * b));
+    }
+
+    mul(8, 6);
+
+    function div(a, b) {
+        document.write("<br>Div = " + (a / b));
+    }
+
+    div(50, 10);
+
+    // no arg , with return
+
+    function square() {
+        let n = 5;
+        return n * n;
+    }
+
+    let ans = square()
+
+    document.write("<br><br> Square = " + ans);
+
+
+    function message() {
+        return "<br>Welcome";
+    }
+
+    let msg = message();
+
+    document.write(msg);
+
+    // with arg , with return
+
+    function add(a, b) {
+        return a + b;
+    }
+
+    let addans = add(10, 20);
+
+    document.write("<br><br>Addition = " + addans);
+
+
+    function read() {
+        return "<br>Cdmi";
+    }
+
+    let mes = read();
+
+    document.write(mes);
+                                             
+
+</script>

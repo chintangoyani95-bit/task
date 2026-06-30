@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:lightblue;
+}
+
+.container{
+    width:100%;
+    max-width:100%;
+}
+
+.navbar{
+    width:100%;
+    height:80px;
+    background:black;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 120px;
+    position:relative;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-image{
+    width:45px;
+    height:45px;
+    object-fit:cover;
+}
+
+.logo h2{
+    color:white;
+    font-size:20px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    list-style:none;
+}
+
+.nav-links li{
+    position:relative;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:lightblue;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.btn{
+    padding:16px 36px;
+    border:none;
+    border-radius:30px;
+    background:#55b9ff;
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.mega-menu{
+    position:absolute;
+    top:50px;
+    left: -400px;
+    width :1120px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    padding:30px;
+    border-radius:10px;
+    visibility:hidden;
+}
+
+.dropdown:hover .mega-menu{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu-column{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    min-width:180px;
+}
+
+.menu-column h3{
+    color:black;
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.menu-column a{
+    color:#555;
+    font-size:15px;
+}
+
+.menu-column a:hover{
+    color:#55b9ff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="logo.png" alt="Logo" class="logo-image">
+        <h2>Workfolio</h2>
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="#">Home</a></li>
+
+        <li><a href="#">About</a></li>
+
+        <li class="dropdown">
+
+            <a href="#">Services</a>
+
+            <div class="mega-menu">
+
+                <div class="menu-column">
+                    <h3>Development</h3>
+                    <a href="#">Web Development</a>
+                    <a href="#">Frontend</a>
+                    <a href="#">Backend</a>
+                    <a href="#">Full Stack</a>
+                    <a href="#">React JS</a>
+                </div>
+
+                <div class="menu-column">
+                    <h3>Programming</h3>
+                    <a href="#">C Language</a>
+                    <a href="#">C++</a>
+                    <a href="#">Java</a>
+                    <a href="#">Python</a>
+                    <a href="#">PHP</a>
+                </div>
+
+                <div class="menu-column">
+                    <h3>Design</h3>
+                    <a href="#">UI/UX</a>
+                    <a href="#">Figma</a>
+                    <a href="#">Photoshop</a>
+                    <a href="#">Illustrator</a>
+                    <a href="#">Canva</a>
+                </div>
+
+                <div class="menu-column">
+                    <h3>Marketing</h3>
+                    <a href="#">SEO</a>
+                    <a href="#">Google Ads</a>
+                    <a href="#">Meta Ads</a>
+                    <a href="#">Content Marketing</a>
+                    <a href="#">Email Marketing</a>
+                </div>
+
+                <div class="menu-column">
+                    <h3>Trendy Courses</h3>
+                    <a href="#">Angular js</a>
+                    <a href="#">React js</a>
+                    <a href="#">Python</a>
+                    <a href="#">React Native</a>
+                    <a href="#">Ethical Hacking</a>
+
+            </div>
+
+        </li>
+
+        <li><a href="#">Skills</a></li>
+        <li><a href="#">Experience</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+
+    </ul>
+
+    <button class="btn">Let's Talk</button>
+
+</nav>
+
+</div>
+
+</body>
+</html>

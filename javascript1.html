@@ -1,0 +1,46 @@
+<script>
+    let a = 12
+    let b = 78
+    let c = 90
+
+    console.log(a < b);
+    console.log(a > b);
+    console.log(a <= b);
+    console.log(a >= b);
+    console.log("==", a == b);
+    console.log(a != b);
+
+
+    console.log("====", a === b);
+    console.log("====", a !== b);
+
+
+    if (a > b) {
+        console.log("A is max");
+
+    }
+    else
+    {
+        console.log("B is max");
+        
+    }
+
+    if(a>b && a>c)
+    {
+        console.log("A is max");
+    }
+    else if(b>c)
+    {
+        console.log("B is max");
+        
+    }
+    else
+    {
+        console.log("C is max");
+    }
+
+
+    let max = (a>b) ? (a>c) ? a : c : (b>c) ? b :c ;
+    console.log(max);
+    
+</script>

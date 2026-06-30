@@ -1,0 +1,2689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #040824;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .navbar {
+            margin-top: 20px;
+            background: #1c2038;
+            border-radius: 50px;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h2 {
+            font-size: 22px;
+        }
+
+        .logo span {
+            color: #95d600;
+            font-size: 28px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .menu li {
+            position: relative;
+            list-style: none;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .menu li a:hover {
+            color: #95d600;
+        }
+
+        .active {
+            color: #95d600 !important;
+        }
+
+        .btn {
+            background: #95d600;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 220px;
+            background: #1c2038;
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            padding: 12px 20px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .deep-dropdown {
+            position: relative;
+        }
+
+        .deep-menu {
+            position: absolute;
+            top: 0;
+            left: -230px;
+            width: 230px;
+            background: #1c2038;
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .deep-menu li {
+            padding: 12px 20px;
+        }
+
+        .deep-dropdown:hover .deep-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .left {
+            margin-top: 140px;
+            flex: 1;
+        }
+
+        .left span {
+            color: #bfc3d6;
+            font-size: 15px;
+        }
+
+        .left h1 {
+            font-size: 50px;
+            line-height: 1.05;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        .left p {
+            color: #b0b5c8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #95d600;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 35px;
+            font-weight: bold;
+        }
+
+        .right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right img {
+            width: 100%;
+            max-width: 650px;
+            margin-top: 140px;
+            transition: 2s;
+        }
+
+        .right img:hover {
+            transform: scale(1.1);
+            transition: 2s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .explore-btn {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .explore-btn i {
+            margin-left: 8px;
+            transition: .3s;
+        }
+
+        .explore-btn:hover {
+            color: #95d600;
+        }
+
+        .explore-btn:hover i {
+            transform: translateX(5px);
+        }
+
+
+        .stats {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 80px 0;
+            /*margin-left:-150px;*/
+        }
+
+        .stat-box h2 {
+            color: #95d600;
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            margin-left: -190px;
+        }
+
+        .stat-box p {
+            color: #aeb3c7;
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: -190px;
+        }
+
+        .about {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .about h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .line {
+            width: 110px;
+            height: 3px;
+            background: #95d600;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .line::before,
+        .line::after {
+            content: "";
+            position: absolute;
+            top: 1px;
+            width: 50px;
+            height: 1px;
+            background: #555;
+        }
+
+        .line::before {
+            left: -50px;
+        }
+
+        .line::after {
+            right: -50px;
+        }
+
+        .about p {
+            color: #d7d7d7;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .growth-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-content {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #162315;
+            color: #95d600;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .left-content h1 {
+            font-size: 40px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .left-content p {
+            color: #a8adc0;
+            line-height: 1.9;
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 620px;
+        }
+
+        .feature {
+            display: flex;
+            gap: 20px;
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: #162315;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #95d600;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .feature h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .feature span {
+            color: #9fa6ba;
+            line-height: 1.7;
+        }
+
+        .right-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .image-card {
+            width: 550px;
+            height: 400px;
+            margin-top: 100px;
+            background: #1b2038;
+            overflow: visible;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+            border-radius: 25px;
+        }
+
+        .growth-card {
+            position: absolute;
+            top: 20px;
+            left: -45px;
+            background: #171c33;
+            padding: 18px 22px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 1;
+
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        .growth-icon {
+            width: 45px;
+            height: 45px;
+            background: #95d600;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .growth-card h2 {
+            font-size: 18px;
+        }
+
+        .growth-card p {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #c5c5c5;
+        }
+
+        .avatars {
+            display: flex;
+            margin-top: -20px;
+        }
+
+        .avatars img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #171c33;
+            margin-left: -8px;
+        }
+
+        .avatars img:first-child {
+            margin-left: 0;
+        }
+
+        .users-card {
+            position: absolute;
+            bottom: -21px;
+            right: -15px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            background: #171c33;
+            padding-left: 22px;
+            border-radius: 20px;
+            width: 180px;
+            height: 100px;
+            z-index: 10;
+            overflow: visible;
+            gap: 12px;
+
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        .top-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: -5px;
+            gap: 10px;
+        }
+
+        .avatars {
+            display: flex;
+        }
+
+        .avatars img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #171c33;
+            margin-left: -8px;
+            margin-top: 40px;
+        }
+
+        .users-card h3 {
+            color: #95d600;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-top: 20px;
+        }
+
+        .users-card p {
+            color: #c5c5c5;
+            font-size: 13px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .cta-section {
+            padding: 60px 0 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .trial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            background: #8dc63f;
+            color: #fff;
+            padding: 18px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(141, 198, 63, .35);
+            transition: .3s;
+        }
+
+        .trial-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .trial-btn:hover i {
+            transform: translateX(5px);
+            transition: .5s;
+        }
+
+        .watch-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .watch-btn span {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #8dc63f;
+            color: #8dc63f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .watch-btn:hover {
+            color: #8dc63f;
+        }
+
+        .stats-card {
+            margin: 40px 0 100px;
+            background: #1a2023;
+            border: 1px solid rgba(141, 198, 63, .15);
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 55px 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            color: #8dc63f;
+            font-size: 35px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .stat-item p {
+            color: #b5b8bf;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .services {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .services h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .services .line {
+            width: 60px;
+            height: 3px;
+            background: #95d600;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .services .line::before,
+        .services .line::after {
+            position: absolute;
+            top: 1px;
+            width: 50px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .services .line::before {
+            left: -50px;
+        }
+
+        .services .line::after {
+            right: -50px;
+        }
+
+        .services p {
+            color: #d7d7d7;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-top: 0px;
+        }
+
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 70px;
+            margin-bottom: 80px;
+        }
+
+        .service-box {
+            padding: 20px 0 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .number {
+            color: #7d8498;
+            font-size: 25px;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .service-box h3 {
+            color: #fff;
+            display: inline-block;
+            font-size: 25px;
+            margin: 0 0 0 15px;
+            vertical-align: middle;
+            font-weight: 700;
+        }
+
+        .service-box p {
+            color: #9da4b8;
+            flex: 1;
+            line-height: 1.9;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 28px;
+        }
+
+        .service-head {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .discover,
+        .service-footer a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .discover i,
+        .service-footer a i {
+            margin-left: 6px;
+            transition: .3s;
+        }
+
+        .discover:hover,
+        .service-footer a:hover {
+            color: #95d600;
+        }
+
+        .discover:hover i,
+        .service-footer a:hover i {
+            transform: translateX(5px);
+        }
+
+        .service-footer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .popular {
+            border: 1px solid #95d600;
+            color: #95d600;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        .portfolio {
+            padding: 100px 0;
+        }
+
+        .portfolio-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 120px;
+        }
+
+        .portfolio-left h2 {
+            font-size: 35px;
+            font-weight: 550;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-left p {
+            color: #a8adc0;
+            font-size: 16px;
+            line-height: 1.8;
+            width: 500px;
+        }
+
+        .project-btn {
+            background: #95d600;
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 35px;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+
+        .portfolio-title {
+            text-align: center;
+        }
+
+        .portfolio-title h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-title p {
+            color: #d5d5d5;
+            margin-top: 25px;
+            font-size: 17px;
+        }
+
+        .portfolio-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .portfolio-menu p {
+            color: #9fa6ba;
+            width: 420px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .portfolio-tabs {
+            display: flex;
+            gap: 15px;
+        }
+
+        .portfolio-tabs button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: #fff;
+            padding: 16px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: .3s;
+            font-size: 14px;
+        }
+
+        .portfolio-tabs button:hover {
+            border-color: #cccec7;
+            color: #cccec7;
+        }
+
+        .portfolio-tabs .active-tab {
+            background: #95d600;
+            border: none;
+            color: #fff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            margin-top: 70px;
+        }
+
+        .portfolio-card {
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            padding-bottom: 25px;
+        }
+
+        .portfolio-img {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-img img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-content {
+            margin-top: 20px;
+            transition: .3s;
+        }
+
+        .portfolio-content h3:hover {
+            color: #95d600;
+        }
+
+        .portfolio-content small {
+            color: #9ea4b8;
+            font-size: 13px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 26px;
+            margin: 12px 0;
+            font-weight: 700;
+        }
+
+        .portfolio-content p {
+            color: #9ea4b8;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .tags span {
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: #bfc3d6;
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        .tags span:hover {
+            color: #95d600;
+            border-color: #95d600;
+        }
+
+        .portfolio-content a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .portfolio-content a:hover {
+            color: #95d600;
+        }
+
+        .project-cta {
+            padding: 60px 0 180px;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-left h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-left p {
+            color: #a8adc0;
+            font-size: 15px;
+        }
+
+        .project-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .begin-btn {
+            width: 230px;
+            background: #95d600;
+            color: #fff;
+            text-decoration: none;
+            padding: 24px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .begin-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .explore-work {
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .explore-work i {
+            margin-left: 5px;
+        }
+
+        .explore-work:hover {
+            color: #95d600;
+        }
+
+        .why-section {
+            text-align: center;
+            margin-top: 220px;
+        }
+
+        .why-section h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .why-section p {
+            color: #d5d5d5;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .apart-heading {
+            margin-top: 120px;
+        }
+
+        .apart-heading h2 {
+            font-size: 45px;
+            line-height: 1.05;
+            font-weight: 700;
+            max-width: 650px;
+        }
+
+        .why-us-details {
+            margin-top: -150px;
+        }
+
+        .why-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .why-text {
+            width: 45%;
+        }
+
+        .why-text p {
+            color: #9fa6ba;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .why-actions {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .launch-btn {
+            text-decoration: none;
+            background: #95d600;
+            color: #fff;
+            padding: 18px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .explore-link {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .explore-link i {
+            margin-left: 4px;
+        }
+
+        .why-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            margin-top: 50px;
+        }
+
+        .why-card {
+            padding: 45px 38px;
+            min-height: 230px;
+        }
+
+        .why-card:nth-child(2) {
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            border-right: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .icon {
+            color: #95d600;
+            font-size: 35px;
+            /* margin-bottom: 250px; */
+        }
+
+        .why-card h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            margin-left: 30px;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .why-card h2 span {
+            color: #95d600;
+            font-size: 28px;
+        }
+
+        .why-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            margin-left: 70px;
+        }
+
+        .why-card p {
+            color: #9fa6ba;
+            line-height: 1.8;
+            font-size: 15px;
+            max-width: 270px;
+            margin-left: 70px;
+        }
+
+        .pillars-section {
+            width: 85%;
+            margin: 120px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 80px;
+        }
+
+        .pillars-left {
+            width: 55%;
+        }
+
+        .pillars-left img {
+            width: 100%;
+            margin-left: -80px;
+            display: block;
+            transition: 1s ease;
+        }
+
+        .pillars-left:hover img {
+            transform: scale(1.08);
+        }
+
+        .pillars-right {
+            width: 55%;
+        }
+
+        .pillars-right h2 {
+            font-size: 32px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #fff;
+            max-width: 500px;
+        }
+
+        .pillar-item {
+            display: flex;
+            gap: 25px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .pillar-item span {
+            color: #9be000;
+            font-size: 16px;
+            margin-top: 4px;
+            font-weight: 700;
+            min-width: 40px;
+        }
+
+        .pillar-item h3 {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            margin-left: -20px;
+        }
+
+        .pillar-item p {
+            color: #9fa6ba;
+            line-height: 1.9;
+            font-size: 13px;
+            margin-left: -20px;
+        }
+
+        .testimonials {
+            width: 100%;
+            margin: 120px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .line {
+            width: 100px;
+            height: 2px;
+            background: #95d600;
+            margin: 0 auto 25px;
+        }
+
+        .section-title p {
+            color: #b0b5c5;
+            font-size: 14px;
+        }
+
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: #101629;
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 35px;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+
+        .review {
+            color: #e7e7e7;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .client-info {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding-top: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .client-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-left img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .client-left h4 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .client-left span {
+            color: #9fa6ba;
+            font-size: 14px;
+        }
+
+        .verify {
+            color: #95d600;
+            font-size: 20px;
+        }
+
+        .testimonial-arrows {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .arrow-btn {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .arrow-btn:hover {
+            background: #edeeeb;
+            border-color: #edeeeb;
+        }
+
+        .team-section {
+            padding: 60px 0;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .team-header h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .team-divider {
+            width: 60px;
+            height: 3px;
+            background: #95d600;
+            margin: 18px auto 25px;
+            position: relative;
+        }
+
+        .team-divider::before,
+        .team-divider::after {
+            content: "";
+            position: absolute;
+            top: 1px;
+            width: 50px;
+            height: 1px;
+            background: rgba(255, 255, 255, .25);
+        }
+
+        .team-divider::before {
+            left: -50px;
+        }
+
+        .team-divider::after {
+            right: -50px;
+        }
+
+        .team-header p {
+            color: #a6adc0;
+            font-size: 14px;
+        }
+
+        .team-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 45px;
+        }
+
+        .team-left {
+            width: 40%;
+        }
+
+        .team-left small {
+            color: #a6adc0;
+            font-weight: 700;
+        }
+
+        .team-left h2 {
+            font-size: 32px;
+            line-height: 1.1;
+            margin: 20px 0;
+        }
+
+        .team-left p {
+            font-size: 15px;
+            color: #9ea4b8;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        .team-stats {
+            display: flex;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding-top: 30px;
+        }
+
+        .team-stat {
+            flex: 1;
+        }
+
+        .team-stat h3 {
+            color: #95d600;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .team-stat span {
+            color: #9ea4b8;
+            font-size: 12px;
+        }
+
+        .team-right {
+            width: 60%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .team-card {
+            margin-top: 60px;
+        }
+
+        .team-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .team-card h3 {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .team-card span {
+            color: #9ea4b8;
+            font-size: 15px;
+        }
+
+        .team-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            display: block;
+            transition: transform .5s ease;
+            transform: scale(1);
+            transform-origin: center center;
+            /* center માંથી zoom થશે */
+        }
+
+        .team-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 8, 36, .35);
+            opacity: 0;
+            transition: .5s;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-card:hover .team-image::after {
+            opacity: 1;
+        }
+
+        .leader-section {
+            padding: 60px 0;
+        }
+
+        .leader-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .leader-top small {
+            color: #8c93a8;
+            font-weight: 700;
+        }
+
+        .leader-top h2 {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+
+        .leader-top p {
+            color: #8c93a8;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .leader-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .leader-card {
+            background: #171c2f;
+            border: 1px solid rgba(255, 255, 255, .08);
+            margin-top: -10px;
+        }
+
+        .leader-img {
+            overflow: hidden;
+            height: 290px;
+        }
+
+        .leader-img img {
+            width: 100%;
+            display: block;
+            transition: .5s;
+        }
+
+        .leader-card:hover .leader-img img {
+            transform: scale(1.08);
+        }
+
+        .leader-content {
+            padding: 22px;
+        }
+
+        .leader-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .leader-content h4 {
+            color: #95d600;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .leader-content p {
+            color: #9ea4b8;
+            line-height: 1.8;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .leader-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .leader-social a {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: #fff;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .leader-social a:hover {
+            background: #95d600;
+            border-color: #95d600;
+        }
+
+        .career-cta-wrap {
+            padding: 60px 0;
+        }
+
+        .career-cta-box {
+            max-width: 1200px;
+            margin: auto;
+            background: #111527;
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .career-arrow-box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #95d600;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .career-cta-content {
+            flex: 1;
+        }
+
+        .career-cta-content h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .career-cta-content p {
+            color: #98a2b8;
+            font-size: 12px;
+            line-height: 1.8;
+            max-width: 550px;
+        }
+
+        .career-cta-action {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .career-btn {
+            background: #95d600;
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .career-btn:hover {
+            background: #82be00;
+        }
+
+        .career-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .career-link i {
+            margin-left: 8px;
+            transition: .3s;
+        }
+
+        .career-link:hover {
+            color: #95d600;
+        }
+
+        .career-link:hover i {
+            transform: translateX(5px);
+        }
+
+        @keyframes floatUpDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h2>Rival</h2>
+            </div>
+
+            <ul class="menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Team</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Dropdown <i class="fa-solid fa-angle-down"></i> </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dropdown 1</a></li>
+
+                        <li class="deep-dropdown">
+                            <a href="#">Deep Dropdown <i class="fa-solid fa-angle-down"></i></a>
+
+                            <ul class="deep-menu">
+                                <li><a href="#">Deep Dropdown 1</a></li>
+                                <li><a href="#">Deep Dropdown 2</a></li>
+                                <li><a href="#">Deep Dropdown 3</a></li>
+                                <li><a href="#">Deep Dropdown 4</a></li>
+                                <li><a href="#">Deep Dropdown 5</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Dropdown 2</a></li>
+                        <li><a href="#">Dropdown 3</a></li>
+                        <li><a href="#">Dropdown 4</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <a href="#" class="btn">Get Started</a>
+
+        </nav>
+
+        <section class="hero">
+
+            <div class="left">
+
+                <span>Digital Studio</span>
+
+                <h1>
+                    Elevate Your Brand
+                    Through Powerful
+                    Digital Craft
+                </h1>
+
+                <p>
+                    Curabitur aliquet quam id dui posuere blandit.
+                    Vivamus magna<br> justo, lacinia eget consectetur sed,
+                    convallis at tellus. Nulla porttitor<br> accumsan
+                    tincidunt.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#" class="hero-btn">
+                        Launch Today
+                    </a>
+
+                    <a href="#" class="explore-btn">
+                        Explore Projects
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="right">
+
+                <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/svg/creative-digital-agency.svg"
+                    alt="Agency">
+
+            </div>
+
+        </section>
+
+        <section class="stats">
+
+            <div class="stat-box">
+                <h2>280+</h2>
+                <p>Campaigns Delivered</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>98%</h2>
+                <p>Retention Rate</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>36</h2>
+                <p>Creative Experts</p>
+            </div>
+
+        </section>
+
+        <section class="about">
+
+            <h2>About</h2>
+
+            <div class="line"></div>
+
+            <p>
+                Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+                consectetur velit
+            </p>
+
+        </section>
+
+        <section class="growth-section">
+
+            <div class="left-content">
+
+                <div class="badge">
+                    BUILT FOR MODERN TEAMS
+                </div>
+
+                <h1>
+                    Ship Beautiful Products<br>
+                    at Lightning Speed
+                </h1>
+
+                <p>
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+                    fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+                    sequi nesciunt.
+                </p>
+
+                <div class="feature">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3>Instant Deployment</h3>
+                        <span>Temporibus autem quibusdam debitis rerum necessitatibus saepe eveniet.</span>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3>Enterprise-Grade Security</h3>
+                        <span>Itaque earum rerum hic tenetur a sapiente delectus reiciendis.</span>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h3>Actionable Analytics</h3>
+                        <span>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="right-content">
+
+                <div class="image-card">
+
+                    <div class="window-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/about/about-wide-3.webp" alt="">
+
+                    <div class="growth-card">
+
+                        <div class="growth-icon">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+
+                        <div>
+                            <h2>+287%</h2>
+                            <p>Growth Rate</p>
+                        </div>
+
+                    </div>
+
+                    <div class="users-card">
+
+                        <div class="top-row">
+
+                            <div class="avatars">
+                                <img
+                                    src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-3.webp">
+                                <img
+                                    src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-m-5.webp">
+                                <img
+                                    src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-8.webp">
+                            </div>
+
+                            <h3>+12k</h3>
+
+                        </div>
+
+                        <p>Active users this week</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="cta-section">
+
+            <div class="cta-buttons">
+
+                <a href="#" class="trial-btn">
+                    Start Free Trial
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <a href="#" class="watch-btn">
+                    <span><i class="fa-solid fa-play"></i></span>
+                    Watch Demo
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="stats-card">
+
+            <div class="stat-item">
+                <h2>15+</h2>
+                <p>YEARS INNOVATING</p>
+            </div>
+
+            <div class="stat-item">
+                <h2>830+</h2>
+                <p>PRODUCTS LAUNCHED</p>
+            </div>
+
+            <div class="stat-item">
+                <h2>99.9%</h2>
+                <p>UPTIME GUARANTEE</p>
+            </div>
+
+            <div class="stat-item">
+                <h2>4.9/5</h2>
+                <p>CUSTOMER RATING</p>
+            </div>
+
+        </section>
+
+        <section class="services">
+
+            <h2>Services</h2>
+
+            <div class="line"></div>
+
+            <p>
+                Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
+            </p>
+
+        </section>
+
+        <section class="services-grid">
+
+            <div class="service-box">
+
+                <div class="service-head">
+                    <span class="number">01</span>
+                    <h3>Brand Identity Design</h3>
+                </div>
+                <p>
+                    Donec vel sapien augue integer urna vel turpis cursus porta aliquam
+                    ligula eget ultricies sed magna.
+                </p>
+
+                <div class="service-footer">
+                    <span class="popular">Most Popular</span>
+                    <a href="#">Discover more <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-box">
+
+                <div class="service-head">
+                    <span class="number">02</span>
+                    <h3>UI/UX Design</h3>
+                </div>
+                <p>
+                    Mauris blandit aliquet elit eget tincidunt nibh pulvinar rutrum
+                    tellus pellentesque eu feugiat.
+                </p>
+
+                <a href="#" class="discover">
+                    Discover more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-box">
+
+                <div class="service-head">
+                    <span class="number">03</span>
+                    <h3>Web Development</h3>
+                </div>
+                <p>
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                    posuere cubilia curae sed viverra.
+                </p>
+
+                <a href="#" class="discover">
+                    Discover more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-box">
+
+                <div class="service-head">
+                    <span class="number">04</span>
+                    <h3>Mobile App Design</h3>
+                </div>
+                <p>
+                    Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet
+                    non curabitur gravida arcu.
+                </p>
+
+                <a href="#" class="discover">
+                    Discover more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-box">
+
+                <div class="service-head">
+                    <span class="number">05</span>
+                    <h3>Digital Marketing</h3>
+                </div>
+                <p>
+                    Sed porttitor lectus nibh donec sollicitudin molestie malesuada
+                    proin eget tortor risus nunc.
+                </p>
+
+                <a href="#" class="discover">
+                    Discover more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-box">
+                <div class="service-head">
+                    <span class="number">06</span>
+                    <h3>SEO Optimization</h3>
+                </div>
+                <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at sem
+                    pellentesque habitant morbi tristique.
+                </p>
+
+                <a href="#" class="discover">
+                    Discover more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </section>
+
+        <section class="portfolio">
+
+            <div class="portfolio-top">
+
+                <div class="portfolio-left">
+                    <h2>Ready to elevate your digital presence?</h2>
+                    <p>
+                        Let's collaborate on your next project and craft something remarkable
+                        together.
+                    </p>
+                </div>
+
+                <a href="#" class="project-btn">Start a Project</a>
+
+            </div>
+
+            <div class="portfolio-title">
+                <h2>Portfolio</h2>
+                <div class="line"></div>
+                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            </div>
+
+            <div class="portfolio-menu">
+
+                <p>
+                    Curated selection of recent projects spanning digital products,
+                    visual identity, and interactive experiences.
+                </p>
+
+                <div class="portfolio-tabs">
+                    <button class="active-tab">All</button>
+                    <button>Web Design</button>
+                    <button>Mobile Apps</button>
+                    <button>Branding</button>
+                    <button>UI/UX</button>
+                </div>
+
+            </div>
+
+
+            <div class="portfolio-grid">
+
+                <!-- Card 1 -->
+                <div class="portfolio-card">
+
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-3.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>Web Design &nbsp; / ⭐ 4.8</small>
+
+                        <h3>Digital Innovation Platform</h3>
+
+                        <p>
+                            Praesent sapien massa, convallis a pellentesque nec,
+                            egestas non nisi cras ultricies ligula.
+                        </p>
+
+                        <div class="tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>AWS</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card">
+
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-5.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>Mobile App &nbsp; ⭐ 4.9</small>
+
+                        <h3>Intelligent Task Manager</h3>
+
+                        <p>
+                            Nulla porttitor accumsan tincidunt donec rutrum
+                            congue leo eget malesuada vivamus suscipit.
+                        </p>
+
+                        <div class="tags">
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                            <span>AI</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card">
+
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-1.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>Branding &nbsp; ⭐ 5.0</small>
+
+                        <h3>Contemporary Visual Identity</h3>
+
+                        <p>
+                            Quisque velit nisi pretium ut lacinia in elementum id enim sed porttitor lectus nibh.
+                        </p>
+
+                        <div class="tags">
+                            <span>Illustrator</span>
+                            <span>Figma</span>
+                            <span>Brand</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-6.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>UI/UX &nbsp; ⭐ 4.7</small>
+
+                        <h3>Analytics Dashboard Interface</h3>
+
+                        <p>
+                            Vivamus magna justo lacinia eget consectetur sed convallis at tellus curabitur.
+                        </p>
+
+                        <div class="tags">
+                            <span>Figma</span>
+                            <span>Prototyping</span>
+                            <span>UX</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-2.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>E-Commerce &nbsp; ⭐ 4.6</small>
+
+                        <h3>Online Retail Experience</h3>
+
+                        <p>
+                            Donec sollicitudin molestie malesuada sed porttitor lectus nibh nulla quis lorem ut libero.
+                        </p>
+
+                        <div class="tags">
+                            <span>Shopify</span>
+                            <span>React</span>
+                            <span>API</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/portfolio/portfolio-4.webp"
+                            alt="">
+                    </div>
+
+                    <div class="portfolio-content">
+                        <small>Fintech &nbsp; ⭐ 4.8</small>
+
+                        <h3>Banking App Reimagined</h3>
+
+                        <p>
+                            Curabitur aliquet quam id dui posuere blandit nulla quis lorem ut libero malesuada feugiat.
+                        </p>
+
+                        <div class="tags">
+                            <span>Swift</span>
+                            <span>Kotlin</span>
+                            <span>Blockchain</span>
+                        </div>
+
+                        <a href="#">View project →</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="project-cta">
+
+            <div class="project-top">
+
+                <div class="project-left">
+                    <h2>Have a project in mind?</h2>
+
+                    <p>
+                        Let's collaborate and craft something remarkable together.
+                    </p>
+                </div>
+
+                <div class="project-right">
+
+                    <a href="#" class="begin-btn">
+                        Begin a conversation
+                    </a>
+
+                    <a href="#" class="explore-work">
+                        Explore all work
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="why-section">
+
+                <h2>Why Us</h2>
+
+                <div class="line"></div>
+
+                <p>
+                    Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
+                </p>
+
+            </div>
+
+            <div class="apart-heading">
+
+                <h2>
+                    What Sets Us Apart From the Rest
+                </h2>
+
+            </div>
+
+        </section>
+
+        <section class="why-us-details">
+
+            <div class="why-top">
+
+                <div class="why-text">
+                    <p>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
+                        cupidatat.
+                    </p>
+                </div>
+
+                <div class="why-actions">
+
+                    <a href="#" class="launch-btn">
+                        Launch Your Project
+                    </a>
+
+                    <a href="#" class="explore-link">
+                        Explore Our Work
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="why-cards">
+
+                <div class="why-card">
+
+                    <i class="bi bi-palette icon"></i>
+
+                    <h2>95<span>%</span></h2>
+
+                    <h3>Creative Excellence</h3>
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+                        eiusmod tempor incididunt ut labore.
+                    </p>
+
+                </div>
+
+                <div class="why-card">
+
+                    <i class="bi bi-graph-up-arrow icon"></i>
+
+                    <h2>200<span>%</span></h2>
+
+                    <h3>Proven Results</h3>
+
+                    <p>
+                        Ut enim ad minim veniam quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo.
+                    </p>
+
+                </div>
+
+                <div class="why-card">
+
+                    <i class="bi bi-award icon"></i>
+
+                    <h2>50<span>+</span></h2>
+
+                    <h3>Industry Accolades</h3>
+
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident sunt in culpa
+                        qui officia deserunt mollit anim.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="pillars-section">
+
+            <div class="pillars-left">
+                <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/illustration/illustration-27.webp"
+                    alt="Approach">
+            </div>
+
+            <div class="pillars-right">
+
+                <h2>The Pillars Behind Our Approach</h2>
+
+                <div class="pillar-item">
+                    <span>01</span>
+                    <div>
+                        <h3>Strategic Vision</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut
+                            labore et dolore.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pillar-item">
+                    <span>02</span>
+                    <div>
+                        <h3>Insight-Led Methodology</h3>
+                        <p>
+                            Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pillar-item">
+                    <span>03</span>
+                    <div>
+                        <h3>Round-the-Clock Assistance</h3>
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="testimonials">
+
+            <div class="section-title">
+                <h2>Testimonials</h2>
+                <div class="line"></div>
+                <p>
+                    Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+                    consectetur velit
+                </p>
+            </div>
+
+            <div class="testimonial-container">
+
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="review">
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                        qui officia deserunt mollit anim id est laborum consectetur
+                        adipiscing elit sed tempor officia deserunt mollit anim.
+                    </p>
+
+                    <div class="client-info">
+
+                        <div class="client-left">
+                            <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-5.webp"
+                                alt="">
+
+                            <div>
+                                <h4>Jennifer Martinez</h4>
+                                <span>Product Designer — TechCorp</span>
+                            </div>
+                        </div>
+
+                        <i class="fa-solid fa-circle-check verify"></i>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="review">
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip.
+                    </p>
+
+                    <div class="client-info">
+
+                        <div class="client-left">
+                            <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-12.webp"
+                                alt="">
+
+                            <div>
+                                <h4>Alexander Chen</h4>
+                                <span>Frontend Engineer — InnovateLab</span>
+                            </div>
+                        </div>
+
+                        <i class="fa-solid fa-circle-check verify"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="testimonial-arrows">
+
+                <div class="arrow-btn">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+
+                <div class="arrow-btn">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="team-section">
+
+            <div class="team-header">
+                <h2>Team</h2>
+                <div class="team-divider"></div>
+                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            </div>
+
+            <div class="team-wrapper">
+
+                <div class="team-left">
+
+                    <small>Our People</small>
+
+                    <h2>
+                        The Minds Behind Every <br> Project
+                    </h2>
+
+                    <p>
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                        odit aut fugit, sed quia consequuntur magni dolores eos qui
+                        ratione voluptatem sequi nesciunt.
+                    </p>
+
+                    <div class="team-stats">
+
+                        <div class="team-stat">
+                            <h3>65+</h3>
+                            <span>Professionals</span>
+                        </div>
+
+                        <div class="team-stat">
+                            <h3>12</h3>
+                            <span>Divisions</span>
+                        </div>
+
+                        <div class="team-stat">
+                            <h3>20+</h3>
+                            <span>Regions</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="team-right">
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="http://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-7.webp"
+                                alt="">
+                        </div>
+                        <h3>Olivia Park</h3>
+                        <span>Design Lead</span>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-m-2.webp"
+                                alt="">
+                        </div>
+                        <h3>Nathan Cole</h3>
+                        <span>Engineering Lead</span>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-12.webp"
+                                alt="">
+                        </div>
+                        <h3>Priya Sharma</h3>
+                        <span>Brand Strategist</span>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-m-11.webp"
+                                alt="">
+                        </div>
+                        <h3>Leo Tanaka</h3>
+                        <span>Creative Director</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="leader-section">
+
+            <div class="leader-top">
+
+                <div>
+                    <small>Leadership</small>
+                    <h2>Guiding Our Vision</h2>
+                </div>
+
+            </div>
+
+            <div class="leader-grid">
+
+                <div class="leader-card">
+
+                    <div class="leader-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-m-13.webp"
+                            alt="">
+                    </div>
+
+                    <div class="leader-content">
+
+                        <h3>Daniel Torres</h3>
+
+                        <h4>Chief Technology Officer</h4>
+
+                        <p>
+                            Ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam.
+                        </p>
+
+                        <div class="leader-social">
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#"><i class="bi bi-github"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="leader-card">
+
+                    <div class="leader-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-f-5.webp"
+                            alt="">
+                    </div>
+
+                    <div class="leader-content">
+
+                        <h3>Rachel Nguyen</h3>
+
+                        <h4>Operations Director</h4>
+
+                        <p>
+                            Nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit.
+                        </p>
+
+                        <div class="leader-social">
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="leader-card">
+
+                    <div class="leader-img">
+                        <img src="https://bootstrapmade.com/content/demo/Rival/assets/img/person/person-m-9.webp"
+                            alt="">
+                    </div>
+
+                    <div class="leader-content">
+
+                        <h3>James Rivera</h3>
+
+                        <h4>Growth Director</h4>
+
+                        <p>
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur.
+                        </p>
+
+                        <div class="leader-social">
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="career-cta-wrap">
+            <div class="career-cta-box">
+
+                <div class="career-arrow-box">
+                    <i class="bi bi-arrow-up-right"></i>
+                </div>
+
+                <div class="career-cta-content">
+                    <h2>Shape the Future With Us</h2>
+                    <p>
+                        Itaque earum rerum hic tenetur a sapiente delectus ut aut
+                        reiciendis <br> voluptatibus maiores alias perferendis doloribus.
+                    </p>
+                </div>
+
+                <div class="career-cta-action">
+                    <a href="#" class="career-btn">
+                        Explore Opportunities
+                    </a>
+
+                    <a href="#" class="career-link">
+                        Discover Our Values
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+
+</body>
+
+</html>
